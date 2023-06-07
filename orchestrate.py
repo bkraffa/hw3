@@ -136,6 +136,17 @@ def train_best_model(
     return None
 
 
+@task(log_prints=True)
+def example_email_send_message_flow():
+    email_credentials_block = EmailServerCredentials.load("email-prefect")
+    subject = email_send_message(
+        email_server_credentials=email_credentials_block,
+        subject="Example Flow Notification using Gmail",
+        msg="This proves email_send_message works!",
+        email_to="brunocaraffa@gmail.com",
+    )
+    return subject
+
 @flow
 def main_flow(
     train_path: str = "./data/green_tripdata_2023-02.parquet",
@@ -156,6 +167,9 @@ def main_flow(
 
     # Train
     train_best_model(X_train, X_val, y_train, y_val, dv)
+
+    #send e-mail
+    example_email_send_message_flow()
 
 
 if __name__ == "__main__":
