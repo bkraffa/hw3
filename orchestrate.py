@@ -109,15 +109,15 @@ def train_best_model(
 
         mlflow.xgboost.log_model(booster, artifact_path="models_mlflow")
 
-        markdown_rmse_report =  f"""# RMSE REPORT
+        markdown_rmse_report =  f"""# rmse report
 
-        ## SUMMARY 
+        ## summary 
 
-        ## RMSE XGBOOST MODEL
+        ## rmse xgboost model
 
-        |REGION     |RMSE    |
+        |region     |rmse    |
         |:----------|-------:|
-        |{date.today()}|{rmse:.2f}|
+        | {date.today()} | {rmse:.2f} |
 
         """
 
