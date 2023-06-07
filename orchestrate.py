@@ -124,15 +124,6 @@ def train_best_model(
         """
 
         create_markdown_artifact(key="duration-model-report", markdown=markdown_rmse_report)
-
-        email_credentials_block = EmailServerCredentials.load("email-prefect")
-
-        email_send_message(email_server_credentials=email_credentials_block,
-        subject="TESTE PREFECT",
-        msg="This proves email_send_message works!",
-        email_to="brunocaraffa@gmail.com")
-
-        
     return None
 
 
