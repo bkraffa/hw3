@@ -1,6 +1,6 @@
 deployments:
 - name: my-deployment2
-  entrypoint: estestorchestrate.py:main_flow
+  entrypoint: orchestrate.py:main_flow
   work_pool:
     name: zoompool2
     work_queue_name: default
