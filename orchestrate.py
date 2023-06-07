@@ -11,6 +11,8 @@ import xgboost as xgb
 from prefect import flow, task
 from prefect.artifacts import create_markdown_artifact
 from datetime import date
+from prefect_email import EmailServerCredentials, email_send_message
+
 
 
 @task(retries=3, retry_delay_seconds=2,name='Read Taxi Data')
@@ -122,6 +124,15 @@ def train_best_model(
         """
 
         create_markdown_artifact(key="duration-model-report", markdown=markdown_rmse_report)
+
+        email_credentials_block = EmailServerCredentials.load("email-prefect")
+
+        email_send_message(email_server_credentials=email_credentials_block,
+        subject="TESTE PREFECT",
+        msg="This proves email_send_message works!",
+        email_to="brunocaraffa@gmail.com")
+
+        
     return None
 
 
